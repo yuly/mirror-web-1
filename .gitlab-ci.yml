@@ -1,4 +1,5 @@
 build:
   script:
+    - bundle install
     - jekyll build
     - echo "test"
