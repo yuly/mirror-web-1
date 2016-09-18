@@ -1,9 +1,6 @@
-before_build:
+build:
     script:
         - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
         - apt update && apt install -y ruby ri ruby-dev bundler zlib1g-dev
         - bundle install
-build:
-    script:
         - jekyll build
-        - echo "test"
