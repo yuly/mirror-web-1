@@ -2,7 +2,7 @@ before_script:
   - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
   - apt update && apt install -y ruby
   - which ruby
-  - gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+  - gem sources --add http://gems.ruby-china.org/ --remove https://rubygems.org/
   - gem install bundler
 build:
   script:
