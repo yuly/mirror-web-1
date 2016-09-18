@@ -11,5 +11,6 @@ build:
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     script:
         - bundle install
+        - sed -i "s/^[ \t]*string.encode('UTF-8')/return string/g" /usr/lib/ruby/vendor_ruby/execjs/encoding.rb
         - jekyll build
         - scp -r _site/* root@202.204.96.98:/mnt/web 
