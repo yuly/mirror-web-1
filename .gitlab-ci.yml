@@ -1,5 +1,7 @@
 build:
     before_script:
+        - export LC_ALL=en_US.UTF-8
+        - export LANG=en_US.UTF-8
         - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
         - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client ruby ri ruby-dev bundler zlib1g-dev nodejs
  -y )'
