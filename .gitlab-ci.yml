@@ -1,5 +1,6 @@
 build:
   script:
+    - apk add libxml2
     - bundle install
     - jekyll build
     - echo "test"
