@@ -1,6 +1,6 @@
 before_script:
   - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
-  - apt update && apt install -y ruby ruby-dev ruby-rdoc ruby-irb ruby-io-console ruby-nokogiri gcc libc-dev libffi-dev zlib-dev libxml2-dev libxslt-dev build-base nodejs
+  - apt update && apt install -y ruby ruby-dev
   - which ruby
   - gem sources --add http://gems.ruby-china.org/ --remove https://rubygems.org/
   - gem install bundler
