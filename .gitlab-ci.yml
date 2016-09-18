@@ -6,4 +6,5 @@ before_script:
   - gem install bundler
 build:
   script:
+    - bundle install
     - jekyll build
