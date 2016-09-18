@@ -1,5 +1,6 @@
 build:
     before_script:
+        - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
         - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client ruby ri ruby-dev bundler zlib1g-dev nodejs
  -y )'
         - eval $(ssh-agent -s)
@@ -7,7 +8,6 @@ build:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     script:
-        - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
         - bundle install
         - jekyll build
         - scp -r _site/* root@202.204.96.98:/mnt/web 
