@@ -1,5 +1,6 @@
 build:
     before_script:
+        - locale-gen en_US.UTF-8
         - export LC_ALL=en_US.UTF-8
         - export LANG=en_US.UTF-8
         - sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
@@ -11,6 +12,5 @@ build:
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     script:
         - bundle install
-        - sed -i "s/^[ \t]*string.encode('UTF-8')/return string/g" /usr/lib/ruby/vendor_ruby/execjs/encoding.rb
         - jekyll build
         - scp -r _site/* root@202.204.96.98:/mnt/web 
