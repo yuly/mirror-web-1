@@ -25,7 +25,9 @@ permalink: /
         <tbody>
         {% for m in site.data.mirrors %}
         <tr>
-            <td>{{m.folder}}</td>
+            <td>
+                <a href="/{{m.folder}}">{{m.folder}}</a>
+            </td>
             <td>{{m.update}}</td>
             <td>
                 {% if m.help != '' %}
