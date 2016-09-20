@@ -149,7 +149,7 @@ $.site = $.fn.site = function(parameters) {
             module.verbose('Changing default setting', setting, value, name);
             $.fn[name].settings[setting] = value;
             if(modifyExisting && namespace) {
-              $existingModules = $(':data(module-' + namespace + ')');
+              $existingModules = $(':_data(module-' + namespace + ')');
               if($existingModules.length > 0) {
                 module.verbose('Modifying existing settings', $existingModules);
                 $existingModules[name]('setting', setting, value);
@@ -175,7 +175,7 @@ $.site = $.fn.site = function(parameters) {
             module.verbose('Changing default setting', newSettings, name);
             $.extend(true, $.fn[name].settings, newSettings);
             if(modifyExisting && namespace) {
-              $existingModules = $(':data(module-' + namespace + ')');
+              $existingModules = $(':_data(module-' + namespace + ')');
               if($existingModules.length > 0) {
                 module.verbose('Modifying existing settings', $existingModules);
                 $existingModules[name]('setting', newSettings);
@@ -469,7 +469,7 @@ $.site.settings = {
 
 };
 
-// allows for selection of elements with data attributes
+// allows for selection of elements with _data attributes
 $.extend($.expr[ ":" ], {
   data: ($.expr.createPseudo)
     ? $.expr.createPseudo(function(dataName) {

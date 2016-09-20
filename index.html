@@ -1,0 +1,42 @@
+---
+permalink: /
+---
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+
+<body>
+{% include nav.html %}
+
+<div class="ui main container">
+    <table class="ui grey table">
+        <thead>
+        <tr>
+            <th colspan="3">
+                文件列表
+            </th>
+        </tr>
+        <tr>
+            <th>镜像名</th>
+            <th>更新时间</th>
+            <th>帮助文档</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for m in site.data.mirrors %}
+        <tr>
+            <td>{{m.folder}}</td>
+            <td>{{m.update}}</td>
+            <td>
+                {% if m.help != '' %}
+                <a href="{{m.help}}"><i class="help circle icon"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include footer.html %}
+</body>
+</html>

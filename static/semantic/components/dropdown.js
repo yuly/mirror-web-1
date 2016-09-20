@@ -204,8 +204,8 @@ $.fn.dropdown = function(parameters) {
                 html         = settings.templates.addition( module.add.variables(message.addResult, value) );
                 $userChoice  = $('<div />')
                   .html(html)
-                  .attr('data-' + metadata.value, value)
-                  .attr('data-' + metadata.text, value)
+                  .attr('_data-' + metadata.value, value)
+                  .attr('_data-' + metadata.text, value)
                   .addClass(className.addition)
                   .addClass(className.item)
                 ;
@@ -1712,7 +1712,7 @@ $.fn.dropdown = function(parameters) {
                 var
                   name = module.read.remoteData(value)
                 ;
-                module.verbose('Restoring value from session data', name, value);
+                module.verbose('Restoring value from session _data', name, value);
                 if(name) {
                   if(!remoteValues) {
                     remoteValues = {};
@@ -2007,7 +2007,7 @@ $.fn.dropdown = function(parameters) {
             var
               values = module.get.remoteValues()
             ;
-            module.debug('Recreating selected from session data', values);
+            module.debug('Recreating selected from session _data', values);
             if(values) {
               if( module.is.single() ) {
                 $.each(values, function(value, name) {
@@ -2075,7 +2075,7 @@ $.fn.dropdown = function(parameters) {
               module.error(error.noStorage);
               return;
             }
-            module.verbose('Saving remote data to session storage', value, name);
+            module.verbose('Saving remote _data to session storage', value, name);
             sessionStorage.setItem(value, name);
           }
         },
@@ -2509,7 +2509,7 @@ $.fn.dropdown = function(parameters) {
             ;
             $label =  $('<a />')
               .addClass(className.label)
-              .attr('data-value', escapedValue)
+              .attr('_data-value', escapedValue)
               .html(templates.label(escapedValue, text))
             ;
             $label = settings.onLabelCreate.call($label, escapedValue, text);
@@ -2597,8 +2597,8 @@ $.fn.dropdown = function(parameters) {
               $addition
                 .data(metadata.value, value)
                 .data(metadata.text, value)
-                .attr('data-' + metadata.value, value)
-                .attr('data-' + metadata.text, value)
+                .attr('_data-' + metadata.value, value)
+                .attr('_data-' + metadata.text, value)
                 .removeClass(className.filtered)
               ;
               if(!settings.hideAdditions) {
@@ -2849,7 +2849,7 @@ $.fn.dropdown = function(parameters) {
           label: function(value, shouldAnimate) {
             var
               $labels       = $module.find(selector.label),
-              $removedLabel = $labels.filter('[data-value="' + value +'"]')
+              $removedLabel = $labels.filter('[_data-value="' + value +'"]')
             ;
             module.verbose('Removing label', $removedLabel);
             $removedLabel.remove();
@@ -2963,7 +2963,7 @@ $.fn.dropdown = function(parameters) {
               escapedValue = module.escape.value(value),
               $labels      = $module.find(selector.label)
             ;
-            return ($labels.filter('[data-value="' + escapedValue +'"]').length > 0);
+            return ($labels.filter('[_data-value="' + escapedValue +'"]').length > 0);
           },
           maxSelections: function() {
             return (settings.maxSelections && module.get.selectionCount() >= settings.maxSelections);
@@ -3503,7 +3503,7 @@ $.fn.dropdown.settings = {
   apiSettings            : false,
   selectOnKeydown        : true,       // Whether selection should occur automatically when keyboard shortcuts used
   minCharacters          : 0,          // Minimum characters required to trigger API call
-  saveRemoteData         : true,       // Whether remote name/value pairs should be stored in sessionStorage to allow remote data to be restored on page refresh
+  saveRemoteData         : true,       // Whether remote name/value pairs should be stored in sessionStorage to allow remote _data to be restored on page refresh
   throttle               : 200,        // How long to wait after last user input to search remotely
 
   context                : window,     // Context to use when determining if on screen
@@ -3584,7 +3584,7 @@ $.fn.dropdown.settings = {
     missingMultiple : '<select> requires multiple property to be set to correctly preserve multiple values',
     method          : 'The method you called is not defined.',
     noAPI           : 'The API module is required to load resources remotely',
-    noStorage       : 'Saving remote data requires session storage',
+    noStorage       : 'Saving remote _data requires session storage',
     noTransition    : 'This module requires ui transitions <https://github.com/Semantic-Org/UI-Transition>'
   },
 
@@ -3690,8 +3690,8 @@ $.fn.dropdown.settings.templates = {
     html += '<div class="menu">';
     $.each(select.values, function(index, option) {
       html += (option.disabled)
-        ? '<div class="disabled item" data-value="' + option.value + '">' + option.name + '</div>'
-        : '<div class="item" data-value="' + option.value + '">' + option.name + '</div>'
+        ? '<div class="disabled item" _data-value="' + option.value + '">' + option.name + '</div>'
+        : '<div class="item" _data-value="' + option.value + '">' + option.name + '</div>'
       ;
     });
     html += '</div>';
@@ -3707,13 +3707,13 @@ $.fn.dropdown.settings.templates = {
     $.each(values, function(index, option) {
       var
         maybeText = (option[fields.text])
-          ? 'data-text="' + option[fields.text] + '"'
+          ? '_data-text="' + option[fields.text] + '"'
           : '',
         maybeDisabled = (option[fields.disabled])
           ? 'disabled '
           : ''
       ;
-      html += '<div class="'+ maybeDisabled +'item" data-value="' + option[fields.value] + '"' + maybeText + '>'
+      html += '<div class="'+ maybeDisabled +'item" _data-value="' + option[fields.value] + '"' + maybeText + '>'
       html +=   option[fields.name];
       html += '</div>';
     });

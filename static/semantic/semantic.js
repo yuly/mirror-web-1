@@ -159,7 +159,7 @@ $.site = $.fn.site = function(parameters) {
             module.verbose('Changing default setting', setting, value, name);
             $.fn[name].settings[setting] = value;
             if(modifyExisting && namespace) {
-              $existingModules = $(':data(module-' + namespace + ')');
+              $existingModules = $(':_data(module-' + namespace + ')');
               if($existingModules.length > 0) {
                 module.verbose('Modifying existing settings', $existingModules);
                 $existingModules[name]('setting', setting, value);
@@ -185,7 +185,7 @@ $.site = $.fn.site = function(parameters) {
             module.verbose('Changing default setting', newSettings, name);
             $.extend(true, $.fn[name].settings, newSettings);
             if(modifyExisting && namespace) {
-              $existingModules = $(':data(module-' + namespace + ')');
+              $existingModules = $(':_data(module-' + namespace + ')');
               if($existingModules.length > 0) {
                 module.verbose('Modifying existing settings', $existingModules);
                 $existingModules[name]('setting', newSettings);
@@ -479,7 +479,7 @@ $.site.settings = {
 
 };
 
-// allows for selection of elements with data attributes
+// allows for selection of elements with _data attributes
 $.extend($.expr[ ":" ], {
   data: ($.expr.createPseudo)
     ? $.expr.createPseudo(function(dataName) {
@@ -984,8 +984,8 @@ $.fn.form = function(parameters) {
             else if( $field.filter('[name="' + identifier +'[]"]').length > 0 ) {
               return $field.filter('[name="' + identifier +'[]"]');
             }
-            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
-              return $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]');
+            else if( $field.filter('[_data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
+              return $field.filter('[_data-' + metadata.validate + '="'+ identifier +'"]');
             }
             return $('<input/>');
           },
@@ -1099,7 +1099,7 @@ $.fn.form = function(parameters) {
             else if( $field.filter('[name="' + identifier +'"]').length > 0 ) {
               return true;
             }
-            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
+            else if( $field.filter('[_data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
               return true;
             }
             return false;
@@ -1873,8 +1873,8 @@ $.fn.form.settings = {
         $form = $(this),
         matchingValue
       ;
-      if( $('[data-validate="'+ identifier +'"]').length > 0 ) {
-        matchingValue = $('[data-validate="'+ identifier +'"]').val();
+      if( $('[_data-validate="'+ identifier +'"]').length > 0 ) {
+        matchingValue = $('[_data-validate="'+ identifier +'"]').val();
       }
       else if($('#' + identifier).length > 0) {
         matchingValue = $('#' + identifier).val();
@@ -1898,8 +1898,8 @@ $.fn.form.settings = {
         $form = $(this),
         matchingValue
       ;
-      if( $('[data-validate="'+ identifier +'"]').length > 0 ) {
-        matchingValue = $('[data-validate="'+ identifier +'"]').val();
+      if( $('[_data-validate="'+ identifier +'"]').length > 0 ) {
+        matchingValue = $('[_data-validate="'+ identifier +'"]').val();
       }
       else if($('#' + identifier).length > 0) {
         matchingValue = $('#' + identifier).val();
@@ -4413,8 +4413,8 @@ $.fn.dropdown = function(parameters) {
                 html         = settings.templates.addition( module.add.variables(message.addResult, value) );
                 $userChoice  = $('<div />')
                   .html(html)
-                  .attr('data-' + metadata.value, value)
-                  .attr('data-' + metadata.text, value)
+                  .attr('_data-' + metadata.value, value)
+                  .attr('_data-' + metadata.text, value)
                   .addClass(className.addition)
                   .addClass(className.item)
                 ;
@@ -5921,7 +5921,7 @@ $.fn.dropdown = function(parameters) {
                 var
                   name = module.read.remoteData(value)
                 ;
-                module.verbose('Restoring value from session data', name, value);
+                module.verbose('Restoring value from session _data', name, value);
                 if(name) {
                   if(!remoteValues) {
                     remoteValues = {};
@@ -6216,7 +6216,7 @@ $.fn.dropdown = function(parameters) {
             var
               values = module.get.remoteValues()
             ;
-            module.debug('Recreating selected from session data', values);
+            module.debug('Recreating selected from session _data', values);
             if(values) {
               if( module.is.single() ) {
                 $.each(values, function(value, name) {
@@ -6284,7 +6284,7 @@ $.fn.dropdown = function(parameters) {
               module.error(error.noStorage);
               return;
             }
-            module.verbose('Saving remote data to session storage', value, name);
+            module.verbose('Saving remote _data to session storage', value, name);
             sessionStorage.setItem(value, name);
           }
         },
@@ -6718,7 +6718,7 @@ $.fn.dropdown = function(parameters) {
             ;
             $label =  $('<a />')
               .addClass(className.label)
-              .attr('data-value', escapedValue)
+              .attr('_data-value', escapedValue)
               .html(templates.label(escapedValue, text))
             ;
             $label = settings.onLabelCreate.call($label, escapedValue, text);
@@ -6806,8 +6806,8 @@ $.fn.dropdown = function(parameters) {
               $addition
                 .data(metadata.value, value)
                 .data(metadata.text, value)
-                .attr('data-' + metadata.value, value)
-                .attr('data-' + metadata.text, value)
+                .attr('_data-' + metadata.value, value)
+                .attr('_data-' + metadata.text, value)
                 .removeClass(className.filtered)
               ;
               if(!settings.hideAdditions) {
@@ -7058,7 +7058,7 @@ $.fn.dropdown = function(parameters) {
           label: function(value, shouldAnimate) {
             var
               $labels       = $module.find(selector.label),
-              $removedLabel = $labels.filter('[data-value="' + value +'"]')
+              $removedLabel = $labels.filter('[_data-value="' + value +'"]')
             ;
             module.verbose('Removing label', $removedLabel);
             $removedLabel.remove();
@@ -7172,7 +7172,7 @@ $.fn.dropdown = function(parameters) {
               escapedValue = module.escape.value(value),
               $labels      = $module.find(selector.label)
             ;
-            return ($labels.filter('[data-value="' + escapedValue +'"]').length > 0);
+            return ($labels.filter('[_data-value="' + escapedValue +'"]').length > 0);
           },
           maxSelections: function() {
             return (settings.maxSelections && module.get.selectionCount() >= settings.maxSelections);
@@ -7712,7 +7712,7 @@ $.fn.dropdown.settings = {
   apiSettings            : false,
   selectOnKeydown        : true,       // Whether selection should occur automatically when keyboard shortcuts used
   minCharacters          : 0,          // Minimum characters required to trigger API call
-  saveRemoteData         : true,       // Whether remote name/value pairs should be stored in sessionStorage to allow remote data to be restored on page refresh
+  saveRemoteData         : true,       // Whether remote name/value pairs should be stored in sessionStorage to allow remote _data to be restored on page refresh
   throttle               : 200,        // How long to wait after last user input to search remotely
 
   context                : window,     // Context to use when determining if on screen
@@ -7793,7 +7793,7 @@ $.fn.dropdown.settings = {
     missingMultiple : '<select> requires multiple property to be set to correctly preserve multiple values',
     method          : 'The method you called is not defined.',
     noAPI           : 'The API module is required to load resources remotely',
-    noStorage       : 'Saving remote data requires session storage',
+    noStorage       : 'Saving remote _data requires session storage',
     noTransition    : 'This module requires ui transitions <https://github.com/Semantic-Org/UI-Transition>'
   },
 
@@ -7899,8 +7899,8 @@ $.fn.dropdown.settings.templates = {
     html += '<div class="menu">';
     $.each(select.values, function(index, option) {
       html += (option.disabled)
-        ? '<div class="disabled item" data-value="' + option.value + '">' + option.name + '</div>'
-        : '<div class="item" data-value="' + option.value + '">' + option.name + '</div>'
+        ? '<div class="disabled item" _data-value="' + option.value + '">' + option.name + '</div>'
+        : '<div class="item" _data-value="' + option.value + '">' + option.name + '</div>'
       ;
     });
     html += '</div>';
@@ -7916,13 +7916,13 @@ $.fn.dropdown.settings.templates = {
     $.each(values, function(index, option) {
       var
         maybeText = (option[fields.text])
-          ? 'data-text="' + option[fields.text] + '"'
+          ? '_data-text="' + option[fields.text] + '"'
           : '',
         maybeDisabled = (option[fields.disabled])
           ? 'disabled '
           : ''
       ;
-      html += '<div class="'+ maybeDisabled +'item" data-value="' + option[fields.value] + '"' + maybeText + '>'
+      html += '<div class="'+ maybeDisabled +'item" _data-value="' + option[fields.value] + '"' + maybeText + '>'
       html +=   option[fields.name];
       html += '</div>';
     });
@@ -11938,7 +11938,7 @@ $.fn.progress = function(parameters) {
                 .css('width', value + '%')
               ;
               $module
-                .attr('data-percent', parseInt(value, 10))
+                .attr('_data-percent', parseInt(value, 10))
               ;
             }
           },
@@ -15238,7 +15238,7 @@ $.fn.shape.settings = {
   // fudge factor in pixels when swapping from 2d to 3d (can be useful to correct rounding errors)
   jitter     : 0,
 
-  // performance data output
+  // performance _data output
   performance: true,
 
   // event namespace
@@ -17641,7 +17641,7 @@ $.fn.tab = function(parameters) {
             else if(tabPath.search('/') == -1 && tabPath !== '') {
               // look for in page anchor
               $anchor     = $('#' + tabPath + ', a[name="' + tabPath + '"]');
-              currentPath = $anchor.closest('[data-tab]').data(metadata.tab);
+              currentPath = $anchor.closest('[_data-tab]').data(metadata.tab);
               $tab        = module.get.tabElement(currentPath);
               // if anchor exists use parent tab
               if($anchor && $anchor.length > 0 && currentPath) {
@@ -17858,7 +17858,7 @@ $.fn.tab = function(parameters) {
           },
           defaultPath: function(tabPath) {
             var
-              $defaultNav = $allModules.filter('[data-' + metadata.tab + '^="' + tabPath + '/"]').eq(0),
+              $defaultNav = $allModules.filter('[_data-' + metadata.tab + '^="' + tabPath + '/"]').eq(0),
               defaultTab  = $defaultNav.data(metadata.tab) || false
             ;
             if( defaultTab ) {
@@ -17877,7 +17877,7 @@ $.fn.tab = function(parameters) {
           },
           navElement: function(tabPath) {
             tabPath = tabPath || activeTabPath;
-            return $allModules.filter('[data-' + metadata.tab + '="' + tabPath + '"]');
+            return $allModules.filter('[_data-' + metadata.tab + '="' + tabPath + '"]');
           },
           tabElement: function(tabPath) {
             var
@@ -17889,8 +17889,8 @@ $.fn.tab = function(parameters) {
             tabPath        = tabPath || activeTabPath;
             tabPathArray   = module.utilities.pathToArray(tabPath);
             lastTab        = module.utilities.last(tabPathArray);
-            $fullPathTab   = $tabs.filter('[data-' + metadata.tab + '="' + tabPath + '"]');
-            $simplePathTab = $tabs.filter('[data-' + metadata.tab + '="' + lastTab + '"]');
+            $fullPathTab   = $tabs.filter('[_data-' + metadata.tab + '="' + tabPath + '"]');
+            $simplePathTab = $tabs.filter('[_data-' + metadata.tab + '="' + lastTab + '"]');
             return ($fullPathTab.length > 0)
               ? $fullPathTab
               : $simplePathTab
@@ -19212,7 +19212,7 @@ $.fn.transition.settings = {
   // verbose debug output
   verbose       : false,
 
-  // performance data output
+  // performance _data output
   performance   : true,
 
   // event namespace
@@ -19713,17 +19713,17 @@ $.api = $.fn.api = function(parameters) {
 
             if(hasOtherData) {
               if(canSerialize) {
-                module.debug('Extending existing data with form data', data, formData);
+                module.debug('Extending existing _data with form _data', data, formData);
                 data = $.extend(true, {}, data, formData);
               }
               else {
                 module.error(error.missingSerialize);
-                module.debug('Cant extend data. Replacing data with form data', data, formData);
+                module.debug('Cant extend _data. Replacing _data with form _data', data, formData);
                 data = formData;
               }
             }
             else {
-              module.debug('Adding form data', formData);
+              module.debug('Adding form _data', formData);
               data = formData;
             }
             return data;
@@ -20349,10 +20349,10 @@ $.api.settings = {
   // base URL to apply to all endpoints
   base              : '',
 
-  // data that will
+  // _data that will
   urlData           : {},
 
-  // whether to add default data to url data
+  // whether to add default _data to url _data
   defaultData          : true,
 
   // whether to serialize closest form
@@ -20411,7 +20411,7 @@ $.api.settings = {
     legacyParameters  : 'You are using legacy API success callback names',
     method            : 'The method you called is not defined',
     missingAction     : 'API action used but no url was defined',
-    missingSerialize  : 'jquery-serialize-object is required to add form data to an existing data object',
+    missingSerialize  : 'jquery-serialize-object is required to add form _data to an existing _data object',
     missingURL        : 'No URL specified for api event',
     noReturnedValue   : 'The beforeSend callback must return a settings object, beforeSend ignored.',
     noStorage         : 'Caching responses locally requires session storage',
@@ -21055,7 +21055,7 @@ $.fn.state.settings = {
   // namespace for events
   namespace      : 'state',
 
-  // debug data includes performance
+  // debug _data includes performance
   performance    : true,
 
   // callback occurs on state change

@@ -486,8 +486,8 @@ $.fn.form = function(parameters) {
             else if( $field.filter('[name="' + identifier +'[]"]').length > 0 ) {
               return $field.filter('[name="' + identifier +'[]"]');
             }
-            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
-              return $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]');
+            else if( $field.filter('[_data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
+              return $field.filter('[_data-' + metadata.validate + '="'+ identifier +'"]');
             }
             return $('<input/>');
           },
@@ -601,7 +601,7 @@ $.fn.form = function(parameters) {
             else if( $field.filter('[name="' + identifier +'"]').length > 0 ) {
               return true;
             }
-            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
+            else if( $field.filter('[_data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
               return true;
             }
             return false;
@@ -1375,8 +1375,8 @@ $.fn.form.settings = {
         $form = $(this),
         matchingValue
       ;
-      if( $('[data-validate="'+ identifier +'"]').length > 0 ) {
-        matchingValue = $('[data-validate="'+ identifier +'"]').val();
+      if( $('[_data-validate="'+ identifier +'"]').length > 0 ) {
+        matchingValue = $('[_data-validate="'+ identifier +'"]').val();
       }
       else if($('#' + identifier).length > 0) {
         matchingValue = $('#' + identifier).val();
@@ -1400,8 +1400,8 @@ $.fn.form.settings = {
         $form = $(this),
         matchingValue
       ;
-      if( $('[data-validate="'+ identifier +'"]').length > 0 ) {
-        matchingValue = $('[data-validate="'+ identifier +'"]').val();
+      if( $('[_data-validate="'+ identifier +'"]').length > 0 ) {
+        matchingValue = $('[_data-validate="'+ identifier +'"]').val();
       }
       else if($('#' + identifier).length > 0) {
         matchingValue = $('#' + identifier).val();
