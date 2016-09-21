@@ -8,7 +8,7 @@ permalink: /news/
 {% include nav.html %}
 <div id="news-content" class="ui main text container">
     {% for news in site.categories.news %}
-    <article>
+    <article class="ui container segment">
         <div id="{{news.slug}}">
             <h2><i class="hashtag icon"></i> {{news.title}}</h2>
         </div>
@@ -19,7 +19,9 @@ permalink: /news/
         <div class="ui divider"></div>
         <div>{{news.content | markdownify }}</div>
     </article>
-    <div class="ui horizontal divider">EOF</div>
+    {% if news != site.categories.news.last %}
+        <div class="ui horizontal divider">EOF</div>
+    {% endif %}
     {% endfor %}
 </div>
 {% include footer.html %}
