@@ -1,10 +1,6 @@
 ---
 ---
         $(document).ready(() => {
-            $("#help-content")
-                .find('table')
-                .addClass("table table-bordered table-striped");
-
             var update_apt_file = (ev) => {
                 var sel = $(ev.target),
                     os_name = sel.find("option:selected").data('os'),
@@ -27,11 +23,6 @@
             $("select.release-select").on('change', update_apt_file);
             $("select.release-select").each((i, e) => {
                 $(e).trigger('change');
-            });
-
-            $('#help-select').on('change', (ev) => {
-                let help_url = $(ev.target).find("option:selected").data('help-url');
-                window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
             });
 
         });
