@@ -7,7 +7,7 @@ permalink: /
 
 <body>
 {% include nav.html %}
-
+{% assign help_pages = (site.categories["help"] | sort: 'mirrorid') %}
 <div class="ui main container">
     <div class="ui icon {{site.data.info.category}} message transition">
         <i class="{{site.data.info.icon}} icon"></i>
@@ -40,9 +40,11 @@ permalink: /
             </td>
             <td>{{m.update}}</td>
             <td>
-                {% if m.help != '' %}
-                <a href="{{m.help}}"><i class="help circle icon"></i></a>
+                {% for h in help_pages %}
+                {% if m.folder == h.mirrorid %}
+                <a href="/help/{{m.folder}}"><i class="help circle icon"></i></a>
                 {% endif %}
+                {% endfor %}
             </td>
         </tr>
         {% endfor %}
