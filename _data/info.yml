@@ -1,0 +1,8 @@
+# 可选的类型： warning, info, success, error
+category: warning
+# 可选的图标： bug, announcement, info, warning
+icon: warning
+# header将会加粗
+header: 最近监测到大量来自 raspbian 用户的404错误
+# content是正文
+content: 请注意 raspbian 的同步地址应为： http://mirrors.cugbteam.org/raspbian/raspbian/
