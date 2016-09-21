@@ -14,7 +14,7 @@ author: Xuanwo
 
 ## 接受新镜像提交
 
-前端开发任务已经告一个段落，现在CUGB 镜像站开始接受新镜像提交，提交传送门： http://git.cugbteam.org/cugblug/mirror-add/issues/new
+前端开发任务已经告一个段落，现在 CUGB 镜像站开始接受新镜像提交，提交传送门： http://git.cugbteam.org/cugblug/mirror-add/issues/new
 
 ## BUG报修
 
