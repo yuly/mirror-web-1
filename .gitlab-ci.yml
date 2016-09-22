@@ -1,13 +1,17 @@
 build:
-    before_script:
-        - locale-gen en_US.UTF-8
-        - export LC_ALL=en_US.UTF-8
-        - export LANG=en_US.UTF-8
-        - eval $(ssh-agent -s)
-        - ssh-add <(echo "$SSH_PRIVATE_KEY")
-        - mkdir -p ~/.ssh
-        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - locale-gen en_US.UTF-8
+  - export LC_ALL=en_US.UTF-8
+  - export LANG=en_US.UTF-8
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - jekyll build
+
+deploy:
+    only:
+        - master@cluglug/mirror-web
     script:
-        - jekyll build
         - chmod +x script/deploy.sh
         - ssh root@202.204.96.98 "bash" < script/deploy.sh
+
