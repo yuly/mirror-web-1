@@ -8,7 +8,7 @@ import json
 
 OUTFILE = "/mnt/code/mirror-web/_data/mirrors.json"
 data = []
-
+exclude = ["script", "static", "status", "help", "news"]
 
 def main():
     logger = logging.getLogger('mirrors-genindex')
@@ -17,12 +17,13 @@ def main():
     logger.addHandler(ch)
     repolist = gencontent.genRepoList()
     for i in repolist:
-        data.append(
-            {
-                "folder": i[0],
-                "update": i[1]
-            }
-        )
+        if i[0] not in exclude:
+            data.append(
+                {
+                    "folder": i[0],
+                    "update": i[1]
+                }
+            )
     logger.info('begin file writing...')
     with open(OUTFILE, 'w') as fout:
         fout.write(json.dumps(data))
