@@ -24,4 +24,4 @@ gems:
     - jekyll-babel
     - jekyll-sitemap
 
-exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
+exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, script, status, static, news]
