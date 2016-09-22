@@ -15,17 +15,17 @@ def CTimeWA(dirpath):
     """A unreliable workaround for nested repos.
     See comments in main program.
     """
-    mtime = 0
+    ctime = 0
     for subd in os.listdir(dirpath):
         subdirpath = os.path.join(dirpath, subd)
         if not os.path.isdir(subdirpath):
             continue
 
-        _mtime = os.stat(subdirpath).st_mtime
-        if _mtime > mtime:
-            mtime = _mtime
+        _ctime = os.stat(subdirpath).st_ctime
+        if _ctime > ctime:
+            ctime = _ctime
 
-    return mtime
+    return ctime
 
 def genRepoList():
     for d in sorted(os.listdir(HTTPDIR), key=str.lower):
