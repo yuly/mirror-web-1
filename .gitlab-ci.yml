@@ -9,5 +9,5 @@ build:
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     script:
         - jekyll build
-        - chmod +x `pwd`/script/deploy.sh
-        - ssh root@202.204.96.98 "bash < `pwd`/script/deploy.sh"
+        - chmod +x script/deploy.sh
+        - ssh root@202.204.96.98 "bash" < script/deploy.sh
