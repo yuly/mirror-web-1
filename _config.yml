@@ -10,7 +10,7 @@ title: 中国地质大学（北京）镜像源
 brand: CUGB mirrors
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
-url: "https://mirrors.cugbteam.org"
+url: "http://mirrors.cugbteam.org"
 
 # Build settings
 highlighter: rouge
@@ -25,6 +25,3 @@ gems:
     - jekyll-sitemap
 
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
-
-# Content Related
-new_mirrors: [ctex, remi, blackarch, ELK, CocoaPods, elpa, pybombs, ceph, antergos, virtualbox]
