@@ -9,6 +9,7 @@ permalink: /
 {% include nav.html %}
 {% assign help_pages = (site.categories["help"] | sort: 'mirrorid') %}
 <div class="ui main container">
+    {% if site.data.info.content %}
     <div class="ui icon {{site.data.info.category}} message transition">
         <i class="{{site.data.info.icon}} icon"></i>
         <i class="close icon"></i>
@@ -19,6 +20,7 @@ permalink: /
             {{site.data.info.content}}
         </div>
     </div>
+    {% endif %}
     <table class="ui grey table">
         <thead>
         <tr>
