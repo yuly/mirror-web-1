@@ -35,9 +35,10 @@ CUGBLUG 目前主要负责以下这两个项目：
 
 CUGBLUG 没有门槛，只要对 **开源**， **\*nix** 感兴趣就可以加入。
 
-但是如果想要加入 CUGBLUG 的开发团队，你需要掌握以下知识：
+但是如果想要加入 CUGBLUG 的开发团队，你需要做如下准备：
 
 - [提问的智慧](https://lug.ustc.edu.cn/wiki/doc/smart-questions)
+- 一个可用的梯子
 
 ### 如何加入 CUGBLUG
 
