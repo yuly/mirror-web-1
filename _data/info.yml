@@ -1,8 +1,8 @@
 # 可选的类型： warning, info, success, error
-category:
+category: info
 # 可选的图标： bug, announcement, info, warning
-icon:
+icon: announcement
 # header将会加粗
-header:
+header: CUGBLUG 新成员招募
 # content是正文
-content:
+content: CUGBLUG 招新啦，有意向的同学请点击： https://cugblug.slack.com/signup ，学校邮箱可直接注册。
